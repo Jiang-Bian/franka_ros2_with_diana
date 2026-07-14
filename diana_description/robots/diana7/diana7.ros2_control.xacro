@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro
+        name="diana7_ros2_control"
+        params="
+        name:=DianaSystem
+        prefix:=''
+        use_fake_hardware:=true
+        robot_ip:=''
+        command_port:=1337
+        state_port:=1338
+        control_frequency:=1000">
+
+        <ros2_control name="${name}" type="system">
+
+            <hardware>
+
+                <plugin>
+                    diana_hardware/DianaSystem
+                </plugin>
+
+                <param name="use_fake_hardware">
+                    ${use_fake_hardware}
+                </param>
+
+                <param name="robot_ip">
+                    ${robot_ip}
+                </param>
+
+                <param name="command_port">
+                    ${command_port}
+                </param>
+
+                <param name="state_port">
+                    ${state_port}
+                </param>
+
+                <param name="control_frequency">
+                    ${control_frequency}
+                </param>
+
+            </hardware>
+
+            <!-- Joint 1 -->
+            <joint name="${prefix}joint1">
+
+                <command_interface name="position" />
+
+                <state_interface name="position" />
+                <state_interface name="velocity" />
+                <state_interface name="effort" />
+
+            </joint>
+
+            <!-- Joint 2 -->
+            <joint name="${prefix}joint2">
+
+                <command_interface name="position" />
+
+                <state_interface name="position" />
+                <state_interface name="velocity" />
+                <state_interface name="effort" />
+
+            </joint>
+
+            <!-- Joint 3 -->
+            <joint name="${prefix}joint3">
+
+                <command_interface name="position" />
+
+                <state_interface name="position" />
+                <state_interface name="velocity" />
+                <state_interface name="effort" />
+
+            </joint>
+
+            <!-- Joint 4 -->
+            <joint name="${prefix}joint4">
+
+                <command_interface name="position" />
+
+                <state_interface name="position" />
+                <state_interface name="velocity" />
+                <state_interface name="effort" />
+
+            </joint>
+
+            <!-- Joint 5 -->
+            <joint name="${prefix}joint5">
+
+                <command_interface name="position" />
+
+                <state_interface name="position" />
+                <state_interface name="velocity" />
+                <state_interface name="effort" />
+
+            </joint>
+
+            <!-- Joint 6 -->
+            <joint name="${prefix}joint6">
+
+                <command_interface name="position" />
+
+                <state_interface name="position" />
+                <state_interface name="velocity" />
+                <state_interface name="effort" />
+
+            </joint>
+
+            <!-- Joint 7 -->
+            <joint name="${prefix}joint7">
+
+                <command_interface name="position" />
+
+                <state_interface name="position" />
+                <state_interface name="velocity" />
+                <state_interface name="effort" />
+
+            </joint>
+
+        </ros2_control>
+
+    </xacro:macro>
+
+</robot>

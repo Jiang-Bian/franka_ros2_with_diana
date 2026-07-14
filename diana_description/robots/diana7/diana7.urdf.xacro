@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<robot
+    xmlns:xacro="http://www.ros.org/wiki/xacro"
+    name="diana7">
+
+  <!-- ====================================================== -->
+  <!-- Arguments                                               -->
+  <!-- ====================================================== -->
+
+  <xacro:arg name="prefix" default=""/>
+
+  <xacro:arg name="use_fake_hardware" default="true"/>
+
+  <xacro:arg name="fake_sensor_commands" default="false"/>
+
+  <xacro:arg name="use_gazebo" default="false"/>
+
+  <xacro:arg name="robot_ip" default=""/>
+
+  <xacro:arg name="command_port" default="1337"/>
+
+  <xacro:arg name="state_port" default="1338"/>
+
+  <xacro:arg name="control_frequency" default="1000"/>
+
+  <!-- ====================================================== -->
+  <!-- Properties                                              -->
+  <!-- ====================================================== -->
+
+  <xacro:property name="prefix"
+                  value="$(arg prefix)"/>
+
+  <xacro:property name="use_fake_hardware"
+                  value="$(arg use_fake_hardware)"/>
+
+  <xacro:property name="fake_sensor_commands"
+                  value="$(arg fake_sensor_commands)"/>
+
+  <xacro:property name="use_gazebo"
+                  value="$(arg use_gazebo)"/>
+
+  <xacro:property name="robot_ip"
+                  value="$(arg robot_ip)"/>
+
+  <xacro:property name="command_port"
+                  value="$(arg command_port)"/>
+
+  <xacro:property name="state_port"
+                  value="$(arg state_port)"/>
+
+  <xacro:property name="control_frequency"
+                  value="$(arg control_frequency)"/>
+
+  <!-- ====================================================== -->
+  <!-- Includes                                                -->
+  <!-- ====================================================== -->
+
+  <xacro:include
+      filename="$(find diana_description)/robots/diana7/diana7_arm.urdf.xacro"/>
+
+  <xacro:include
+      filename="$(find diana_description)/robots/diana7/diana7.ros2_control.xacro"/>
+
+  <xacro:include
+      filename="$(find diana_description)/robots/diana7/diana7.gazebo.xacro"/>
+
+  <!-- ====================================================== -->
+  <!-- Robot                                                   -->
+  <!-- ====================================================== -->
+
+  <xacro:diana7
+      prefix="${prefix}"/>
+
+  <!-- ====================================================== -->
+  <!-- ros2_control                                            -->
+  <!-- ====================================================== -->
+
+  <xacro:diana7_ros2_control
+      name="DianaSystem"
+      prefix="${prefix}"
+      use_fake_hardware="${use_fake_hardware}"
+      robot_ip="${robot_ip}"
+      command_port="${command_port}"
+      state_port="${state_port}"
+      control_frequency="${control_frequency}"/>
+
+  <!-- ====================================================== -->
+  <!-- Gazebo                                                  -->
+  <!-- ====================================================== -->
+
+  <xacro:if value="${use_gazebo}">
+
+    <xacro:diana7_gazebo
+        prefix="${prefix}"/>
+
+  </xacro:if>
+
+</robot>
