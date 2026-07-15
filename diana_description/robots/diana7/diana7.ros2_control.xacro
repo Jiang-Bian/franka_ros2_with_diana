@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
-
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:macro
         name="diana7_ros2_control"
         params="
-        name:=DianaSystem
-        prefix:=''
+        name
+        prefix
+        robot_ip
         use_fake_hardware:=true
-        robot_ip:=''
+        fake_sensor_commands:=true
         command_port:=1337
         state_port:=1338
         control_frequency:=1000">
@@ -17,29 +17,14 @@
 
             <hardware>
 
-                <plugin>
-                    diana_hardware/DianaSystem
-                </plugin>
+                <plugin>franka_hardware/FrankaHardwareInterface</plugin>
 
-                <param name="use_fake_hardware">
-                    ${use_fake_hardware}
-                </param>
-
-                <param name="robot_ip">
-                    ${robot_ip}
-                </param>
-
-                <param name="command_port">
-                    ${command_port}
-                </param>
-
-                <param name="state_port">
-                    ${state_port}
-                </param>
-
-                <param name="control_frequency">
-                    ${control_frequency}
-                </param>
+                <param name="version">1.0.0</param>
+                <param name="robot_ip">${robot_ip}</param>
+                <param name="robot_type">diana7</param>
+                <param name="prefix">${prefix}</param>
+                <param name="use_fake_hardware"> ${use_fake_hardware}</param>
+                <param name="fake_sensor_commands"> ${fake_sensor_commands} </param>
 
             </hardware>
 
@@ -119,6 +104,7 @@
                 <state_interface name="effort" />
 
             </joint>
+
 
         </ros2_control>
 
