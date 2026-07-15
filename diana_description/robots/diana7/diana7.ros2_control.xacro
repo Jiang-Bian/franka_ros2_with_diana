@@ -7,8 +7,9 @@
         name
         prefix
         robot_ip
-        use_fake_hardware:=true
-        fake_sensor_commands:=true
+        robot_type
+        use_fake_hardware
+        fake_sensor_commands
         command_port:=1337
         state_port:=1338
         control_frequency:=1000">
@@ -21,7 +22,7 @@
 
                 <param name="version">1.0.0</param>
                 <param name="robot_ip">${robot_ip}</param>
-                <param name="robot_type">diana7</param>
+                <param name="robot_type">${robot_type}</param>
                 <param name="prefix">${prefix}</param>
                 <param name="use_fake_hardware"> ${use_fake_hardware}</param>
                 <param name="fake_sensor_commands"> ${fake_sensor_commands} </param>
