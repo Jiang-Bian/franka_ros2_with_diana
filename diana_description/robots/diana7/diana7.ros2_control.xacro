@@ -16,18 +16,33 @@
 
         <ros2_control name="${name}" type="system">
 
-            <hardware>
+            <xacro:unless value="${use_fake_hardware}">
 
-                <plugin>franka_hardware/FrankaHardwareInterface</plugin>
+                <hardware>
+                    <plugin>franka_hardware/FrankaHardwareInterface</plugin>
 
-                <param name="version">1.0.0</param>
-                <param name="robot_ip">${robot_ip}</param>
-                <param name="robot_type">${robot_type}</param>
-                <param name="prefix">${prefix}</param>
-                <param name="use_fake_hardware"> ${use_fake_hardware}</param>
-                <param name="fake_sensor_commands"> ${fake_sensor_commands} </param>
+                    <param name="version">1.0.0</param>
+                    <param name="robot_ip">${robot_ip}</param>
+                    <param name="robot_type">${robot_type}</param>
+                    <param name="prefix">${prefix}</param>
+                    <param name="use_fake_hardware"> ${use_fake_hardware}</param>
+                    <param name="fake_sensor_commands"> ${fake_sensor_commands} </param>
+                </hardware>
 
-            </hardware>
+            </xacro:unless>
+
+            <xacro:if value="${use_fake_hardware}">
+
+                <hardware>
+                    <plugin> mock_components/GenericSystem </plugin>
+
+                    <param name="fake_sensor_commands">
+                        ${fake_sensor_commands}
+                    </param>
+
+                </hardware>
+
+            </xacro:if>
 
             <!-- Joint 1 -->
             <joint name="${prefix}joint1">
