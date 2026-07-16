@@ -112,7 +112,8 @@ auto PTPMotionHandler::executeMotion(const std::vector<double>& goal_joint_confi
         while (running_ && handler_ptr != nullptr) {
           std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
-          auto target_feedback = handler_ptr->getTargetFeedback(robot_ptr->getCurrentState());
+          // auto target_feedback = handler_ptr->getTargetFeedback(robot_ptr->getCurrentState());
+          auto target_feedback = handler_ptr->getTargetFeedback();
 
           {
             std::lock_guard<std::mutex> lock(control_mutex_);
