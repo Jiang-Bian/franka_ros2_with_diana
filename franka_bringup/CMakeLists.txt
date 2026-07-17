@@ -9,6 +9,8 @@ project(franka_bringup)
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)
 
+add_subdirectory(diana_test)
+
 ament_python_install_package(${PROJECT_NAME})
 
 install(

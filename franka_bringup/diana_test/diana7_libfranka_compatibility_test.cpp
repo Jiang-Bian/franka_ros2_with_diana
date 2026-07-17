@@ -10,6 +10,8 @@
 #include <franka/robot.h>
 #include <franka/robot_state.h>
 
+#include "diana_test/compatibility_report.hpp"
+
 using Clock = std::chrono::high_resolution_clock;
 
 template <typename Func>
@@ -23,63 +25,6 @@ double measureExecutionTime(Func&& f) {
   return std::chrono::duration<double, std::milli>(t1 - t0).count();
 }
 
-struct TestResult {
-  std::string category;
-  std::string item;
-  bool passed;
-  std::string message;
-};
-
-class CompatibilityReport {
- public:
-  void add(const std::string& category,
-           const std::string& item,
-           bool passed,
-           const std::string& msg = "") {
-    results_.push_back({category, item, passed, msg});
-  }
-
-  void print() const {
-    std::cout << "\n";
-    std::cout << "=========================================================\n";
-    std::cout << "     Diana libfranka Compatibility Report\n";
-    std::cout << "=========================================================\n\n";
-
-    std::string current_category;
-
-    int passed = 0;
-
-    for (const auto& r : results_) {
-      if (r.category != current_category) {
-        current_category = r.category;
-        std::cout << "\n[" << current_category << "]\n";
-      }
-
-      std::cout << "  " << (r.passed ? "[PASS] " : "[FAIL] ") << std::left << std::setw(32)
-                << r.item;
-
-      if (!r.message.empty())
-        std::cout << " : " << r.message;
-
-      std::cout << std::endl;
-
-      if (r.passed)
-        ++passed;
-    }
-
-    std::cout << "\n---------------------------------------------------------\n";
-
-    std::cout << "Compatibility Score : " << passed << " / " << results_.size() << std::endl;
-
-    std::cout << "Overall : " << (passed == static_cast<int>(results_.size()) ? "PASS" : "FAIL")
-              << std::endl;
-
-    std::cout << "=========================================================\n";
-  }
-
- private:
-  std::vector<TestResult> results_;
-};
 
 template <typename T, std::size_t N>
 bool isFiniteArray(const std::array<T, N>& values) {
@@ -110,7 +55,7 @@ bool checkJointVector(
 int main(int argc, char** argv) {
   if (argc != 2) {
     std::cerr << "Usage:\n"
-              << "    diana_libfranka_compatibility_test <robot_ip>\n";
+              << "    diana7_libfranka_compatibility_test <robot_ip>\n";
 
     return EXIT_FAILURE;
   }
@@ -187,16 +132,16 @@ int main(int argc, char** argv) {
 
     //------------------------------------------------------
 
-    report.print();
+    report.print("Diana7 libfranka Compatibility Test Report");
 
   } catch (const franka::Exception& e) {
     report.add("Connection", "Robot Constructor", false, e.what());
-    report.print();
+    report.print("Diana7 libfranka Compatibility Test Report");
     return EXIT_FAILURE;
 
   } catch (const std::exception& e) {
     report.add("General", "Exception", false, e.what());
-    report.print();
+    report.print("Diana7 libfranka Compatibility Test Report");
     return EXIT_FAILURE;
   }
 
