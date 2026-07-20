@@ -2,6 +2,7 @@
 # That is to say, it is not tied to any specific namespace and can be used in
 # any namespace.
 
+
 /**:
   controller_manager:
     ros__parameters:
@@ -34,7 +35,8 @@
 
       franka_robot_state_broadcaster:
         type: franka_robot_state_broadcaster/FrankaRobotStateBroadcaster
-        state_interfaces: robot_state
+        state_interfaces:
+          robot_state
 
       gravity_compensation_example_controller:
         type: franka_example_controllers/GravityCompensationExampleController
@@ -47,7 +49,7 @@
 
       joint_impedance_with_ik_example_controller:
         type: franka_example_controllers/JointImpedanceWithIKExampleController
-
+        
       cartesian_impedance_example_controller:
         type: franka_example_controllers/CartesianImpedanceExampleController
 
@@ -75,8 +77,6 @@
       swerve_drive_controller:
         type: franka_mobile/SwerveDriveController
 
-      joint_trajectory_controller:
-        type: joint_trajectory_controller/JointTrajectoryController
 
 /**:
   joint_impedance_example_controller:
@@ -145,6 +145,7 @@
         - 10.0
         - 5.0
 
+
 /**:
   fr3_duo_joint_impedance_example_controller:
     ros__parameters:
@@ -188,6 +189,7 @@
         - 1.0
         - 0.5
 
+
 /**:
   swerve_drive_controller:
     ros__parameters:
@@ -197,56 +199,32 @@
 
       linear:
         x:
-          has_velocity_limits: true
-          max_velocity: 0.1 # m/s
-          min_velocity: -0.1 # m/s
+          has_velocity_limits    : true
+          max_velocity           : 0.1  # m/s
+          min_velocity           : -0.1 # m/s
           has_acceleration_limits: true
-          max_acceleration: 0.1 # m/s^2
-          min_acceleration: -0.1 # m/s^2
-          has_jerk_limits: false
-          max_jerk: 10.0 # m/s^3
-          min_jerk: -10.0 # m/s^3
+          max_acceleration       : 0.1  # m/s^2
+          min_acceleration       : -0.1 # m/s^2
+          has_jerk_limits        : false
+          max_jerk               : 10.0  # m/s^3
+          min_jerk               : -10.0  # m/s^3
         y:
-          has_velocity_limits: true
-          max_velocity: 0.1 # m/s
-          min_velocity: -0.1 # m/s
+          has_velocity_limits    : true
+          max_velocity           : 0.1  # m/s
+          min_velocity           : -0.1 # m/s
           has_acceleration_limits: true
-          max_acceleration: 0.1 # m/s^2
-          min_acceleration: -0.1 # m/s^2
-          has_jerk_limits: false
-          max_jerk: 10.0 # m/s^3
-          min_jerk: -10.0 # m/s^3
+          max_acceleration       : 0.1  # m/s^2
+          min_acceleration       : -0.1 # m/s^2
+          has_jerk_limits        : false
+          max_jerk               : 10.0  # m/s^3
+          min_jerk               : -10.0  # m/s^3
       angular:
         z:
-          has_velocity_limits: true
-          max_velocity: 0.1 # rad/s
+          has_velocity_limits    : true
+          max_velocity           : 0.1  # rad/s
           has_acceleration_limits: true
-          max_acceleration: 0.1 # rad/s^2
-          min_acceleration: -0.1 # rad/s^2
-          has_jerk_limits: false
-          max_jerk: 10.0 # rad/s^3
-          min_jerk: -10.0 # rad/s^3
-
-/**:
-  joint_trajectory_controller:
-    ros__parameters:
-      joints:
-        - joint1
-        - joint2
-        - joint3
-        - joint4
-        - joint5
-        - joint6
-        - joint7
-
-      command_interfaces:
-        - position
-
-      state_interfaces:
-        - position
-        - velocity
-
-      state_publish_rate: 100.0
-      action_monitor_rate: 20.0
-
-      allow_partial_joints_goal: false
+          max_acceleration       : 0.1  # rad/s^2
+          min_acceleration       : -0.1  # rad/s^2
+          has_jerk_limits        : false
+          max_jerk               : 10.0  # rad/s^3
+          min_jerk               : -10.0  # rad/s^3
