@@ -212,7 +212,7 @@ def generate_launch_description():
                 [
                     FindPackageShare("franka_bringup"),
                     "config",
-                    "controllers.yaml",
+                    "diana7.ros2_controllers.yaml",
                 ]
             ),
         ),
