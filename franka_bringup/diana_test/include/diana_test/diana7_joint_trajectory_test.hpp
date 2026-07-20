@@ -109,8 +109,8 @@ class Diana7TrajectoryValidator : public rclcpp::Node {
   // Timing
   //----------------------------------------
 
-  rclcpp::Time start_time_;
-  rclcpp::Time finish_time_;
+  std::chrono::steady_clock::time_point start_time_;
+  std::chrono::steady_clock::time_point finish_time_;
 
   //----------------------------------------
   // Parameters

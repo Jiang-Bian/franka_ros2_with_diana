@@ -105,8 +105,8 @@ bool Diana7TrajectoryValidator::waitForJointState(std::chrono::seconds timeout) 
 
 const std::vector<double>& Diana7TrajectoryValidator::currentPosition() const {
   std::lock_guard<std::mutex> lock(joint_state_mutex_);
-
-  return joint_state_.position;
+  return current_position_;
+  ;
 }
 const std::vector<double>& Diana7TrajectoryValidator::targetPosition() const {
   return target_position_;
@@ -114,7 +114,6 @@ const std::vector<double>& Diana7TrajectoryValidator::targetPosition() const {
 
 const std::vector<double>& Diana7TrajectoryValidator::currentVelocity() const {
   std::lock_guard<std::mutex> lock(joint_state_mutex_);
-
   return joint_state_.velocity;
 }
 
@@ -177,13 +176,25 @@ Diana7TrajectoryValidator::FollowJointTrajectory::Goal Diana7TrajectoryValidator
 
   trajectory.joint_names = joint_names_;
 
-  trajectory_msgs::msg::JointTrajectoryPoint point;
+  //
+  // Point 0 : Current
+  //
+  trajectory_msgs::msg::JointTrajectoryPoint start;
 
-  point.positions = target_position_;
+  start.positions = current_position_;
+  start.time_from_start = rclcpp::Duration::from_seconds(0.0);
 
-  point.time_from_start = rclcpp::Duration::from_seconds(move_duration_);
+  trajectory.points.push_back(start);
 
-  trajectory.points.push_back(point);
+  //
+  // Point 1 : Target
+  //
+  trajectory_msgs::msg::JointTrajectoryPoint target;
+
+  target.positions = target_position_;
+  target.time_from_start = rclcpp::Duration::from_seconds(move_duration_);
+
+  trajectory.points.push_back(target);
 
   //----------------------------------------
   // Build Goal
@@ -201,7 +212,7 @@ bool Diana7TrajectoryValidator::sendGoal(const FollowJointTrajectory::Goal& goal
   result_received_ = false;
   success_ = false;
 
-  start_time_ = now();
+  start_time_ = std::chrono::steady_clock::now();
 
   rclcpp_action::Client<FollowJointTrajectory>::SendGoalOptions options;
 
@@ -233,10 +244,8 @@ void Diana7TrajectoryValidator::goalResponseCallback(GoalHandle::SharedPtr goal_
 }
 
 void Diana7TrajectoryValidator::resultCallback(const GoalHandle::WrappedResult& result) {
-  finish_time_ = now();
-
+  finish_time_ = std::chrono::steady_clock::now();
   result_received_ = true;
-
   result_code_ = result.code;
 
   success_ = (result.code == rclcpp_action::ResultCode::SUCCEEDED);
@@ -295,7 +304,7 @@ bool Diana7TrajectoryValidator::succeeded() const {
 }
 
 double Diana7TrajectoryValidator::executionTime() const {
-  return (finish_time_ - start_time_).seconds();
+  return std::chrono::duration<double>(finish_time_ - start_time_).count();
 }
 
 std::vector<double> Diana7TrajectoryValidator::computePositionError(
