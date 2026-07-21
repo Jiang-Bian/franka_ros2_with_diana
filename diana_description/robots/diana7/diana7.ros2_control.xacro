@@ -48,6 +48,8 @@
             <joint name="${prefix}joint1">
 
                 <command_interface name="position" />
+                <command_interface name="velocity" />
+                <command_interface name="effort" />
 
                 <state_interface name="position" />
                 <state_interface name="velocity" />
@@ -59,6 +61,8 @@
             <joint name="${prefix}joint2">
 
                 <command_interface name="position" />
+                <command_interface name="velocity" />
+                <command_interface name="effort" />
 
                 <state_interface name="position" />
                 <state_interface name="velocity" />
@@ -70,6 +74,8 @@
             <joint name="${prefix}joint3">
 
                 <command_interface name="position" />
+                <command_interface name="velocity" />
+                <command_interface name="effort" />
 
                 <state_interface name="position" />
                 <state_interface name="velocity" />
@@ -81,6 +87,8 @@
             <joint name="${prefix}joint4">
 
                 <command_interface name="position" />
+                <command_interface name="velocity" />
+                <command_interface name="effort" />
 
                 <state_interface name="position" />
                 <state_interface name="velocity" />
@@ -92,6 +100,8 @@
             <joint name="${prefix}joint5">
 
                 <command_interface name="position" />
+                <command_interface name="velocity" />
+                <command_interface name="effort" />
 
                 <state_interface name="position" />
                 <state_interface name="velocity" />
@@ -103,6 +113,8 @@
             <joint name="${prefix}joint6">
 
                 <command_interface name="position" />
+                <command_interface name="velocity" />
+                <command_interface name="effort" />
 
                 <state_interface name="position" />
                 <state_interface name="velocity" />
@@ -114,6 +126,8 @@
             <joint name="${prefix}joint7">
 
                 <command_interface name="position" />
+                <command_interface name="velocity" />
+                <command_interface name="effort" />
 
                 <state_interface name="position" />
                 <state_interface name="velocity" />
@@ -121,6 +135,14 @@
 
             </joint>
 
+            <sensor name="tcp">
+                <state_interface name="force.x" />
+                <state_interface name="force.y" />
+                <state_interface name="force.z" />
+                <state_interface name="torque.x" />
+                <state_interface name="torque.y" />
+                <state_interface name="torque.z" />
+            </sensor>
 
         </ros2_control>
 
