@@ -134,6 +134,102 @@
                 <state_interface name="effort" />
 
             </joint>
+            <gpio name="vx">
+                <command_interface name="cartesian_velocity" />
+                <param name="index">0</param>
+            </gpio>
+            <gpio name="vy">
+                <command_interface name="cartesian_velocity" />
+                <param name="index">1</param>
+            </gpio>
+            <gpio name="vz">
+                <command_interface name="cartesian_velocity" />
+                <param name="index">2</param>
+            </gpio>
+            <gpio name="wx">
+                <command_interface name="cartesian_velocity" />
+                <param name="index">3</param>
+            </gpio>
+            <gpio name="wy">
+                <command_interface name="cartesian_velocity" />
+                <param name="index">4</param>
+            </gpio>
+            <gpio name="wz">
+                <command_interface name="cartesian_velocity" />
+                <param name="index">5</param>
+            </gpio>
+            <gpio name="0">
+                <command_interface name="cartesian_pose_command" />
+                <param name="index">0</param>
+            </gpio>
+            <gpio name="1">
+                <command_interface name="cartesian_pose_command" />
+                <param name="index">1</param>
+            </gpio>
+            <gpio name="2">
+                <command_interface name="cartesian_pose_command" />
+                <param name="index">2</param>
+            </gpio>
+            <gpio name="3">
+                <command_interface name="cartesian_pose_command" />
+                <param name="index">3</param>
+            </gpio>
+            <gpio name="4">
+                <command_interface name="cartesian_pose_command" />
+                <param name="index">4</param>
+            </gpio>
+            <gpio name="5">
+                <command_interface name="cartesian_pose_command" />
+                <param name="index">5</param>
+            </gpio>
+            <gpio name="6">
+                <command_interface name="cartesian_pose_command" />
+                <param name="index">6</param>
+            </gpio>
+            <gpio name="7">
+                <command_interface name="cartesian_pose_command" />
+                <param name="index">7</param>
+            </gpio>
+            <gpio name="8">
+                <command_interface name="cartesian_pose_command" />
+                <param name="index">8</param>
+            </gpio>
+            <gpio name="9">
+                <command_interface name="cartesian_pose_command" />
+                <param name="index">9</param>
+            </gpio>
+            <gpio name="10">
+                <command_interface name="cartesian_pose_command" />
+                <param name="index">10</param>
+            </gpio>
+            <gpio name="11">
+                <command_interface name="cartesian_pose_command" />
+                <param name="index">11</param>
+            </gpio>
+            <gpio name="12">
+                <command_interface name="cartesian_pose_command" />
+                <param name="index">12</param>
+            </gpio>
+            <gpio name="13">
+                <command_interface name="cartesian_pose_command" />
+                <param name="index">13</param>
+            </gpio>
+            <gpio name="14">
+                <command_interface name="cartesian_pose_command" />
+                <param name="index">14</param>
+            </gpio>
+            <gpio name="15">
+                <command_interface name="cartesian_pose_command" />
+                <param name="index">15</param>
+            </gpio>
+            <gpio name="joint_3_position">
+                <command_interface name="elbow_command" />
+                <param name="index">0</param>
+            </gpio>
+            <gpio name="joint_4_sign">
+                <command_interface name="elbow_command" />
+                <param name="index">1</param>
+            </gpio>
 
             <sensor name="tcp">
                 <state_interface name="force.x" />
