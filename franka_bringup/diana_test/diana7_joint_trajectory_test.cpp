@@ -106,7 +106,6 @@ bool Diana7TrajectoryValidator::waitForJointState(std::chrono::seconds timeout) 
 const std::vector<double>& Diana7TrajectoryValidator::currentPosition() const {
   std::lock_guard<std::mutex> lock(joint_state_mutex_);
   return current_position_;
-  ;
 }
 const std::vector<double>& Diana7TrajectoryValidator::targetPosition() const {
   return target_position_;
