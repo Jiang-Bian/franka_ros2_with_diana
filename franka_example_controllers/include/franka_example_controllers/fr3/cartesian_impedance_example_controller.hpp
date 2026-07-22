@@ -32,6 +32,7 @@
 #include "franka_semantic_components/franka_robot_model.hpp"
 
 #include "franka_example_controllers/visibility_control.h"
+#include <franka_example_controllers/robot_utils.hpp>
 
 namespace franka_example_controllers {
 

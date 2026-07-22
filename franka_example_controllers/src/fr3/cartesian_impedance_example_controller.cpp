@@ -13,8 +13,10 @@
 // limitations under the License.
 
 #include "franka_example_controllers/fr3/cartesian_impedance_example_controller.hpp"
+#include "franka_example_controllers/default_robot_behavior_utils.hpp"
 
 #include <cassert>
+#include <rclcpp/logging.hpp>
 
 namespace franka_example_controllers {
 
@@ -31,7 +33,7 @@ CartesianImpedanceExampleController::CartesianGains CartesianImpedanceExampleCon
 
 CartesianImpedanceExampleController::CallbackReturn CartesianImpedanceExampleController::on_init() {
   try {
-    auto_declare<std::string>("arm_id", "fr3");
+    auto_declare<std::string>("arm_id", "");
     auto_declare<std::string>("arm_prefix", "");
     auto_declare<double>("nullspace_stiffness", 20.0);
     auto_declare<double>("translational_stiffness", 150.0);
@@ -81,7 +83,25 @@ CartesianImpedanceExampleController::state_interface_configuration() const {
 CartesianImpedanceExampleController::CallbackReturn
 CartesianImpedanceExampleController::on_configure(
     const rclcpp_lifecycle::State& /*previous_state*/) {
-  arm_id_ = get_node()->get_parameter("arm_id").as_string();
+  // arm_id_ = get_node()->get_parameter("arm_id").as_string();
+
+  auto parameters_client =
+      std::make_shared<rclcpp::AsyncParametersClient>(get_node(), "robot_state_publisher");
+  parameters_client->wait_for_service();
+
+  auto future = parameters_client->get_parameters({"robot_description"});
+  auto result = future.get();
+
+  std::string robot_description;
+  if (!result.empty()) {
+    robot_description = result[0].value_to_string();
+  } else {
+    RCLCPP_ERROR(get_node()->get_logger(), "Failed to get robot_description parameter.");
+  }
+  
+  arm_id_ =
+      robot_utils::getRobotNameFromDescription(robot_description, get_node()->get_logger());
+
   arm_prefix_ = get_node()->get_parameter("arm_prefix").as_string();
   // Match the franka_hardware export pattern: prefix + index + "/cartesian_pose_state".
   const std::string cartesian_pose_prefix = arm_prefix_.empty() ? std::string{} : arm_prefix_ + "_";
