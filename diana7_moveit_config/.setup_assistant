@@ -7,19 +7,25 @@ moveit_setup_assistant_config:
   package_settings:
     author_name: Agile Robots SE
     author_email: none@todo.email
-    generated_timestamp: 1784131878
+    generated_timestamp: 1784720711
   control_xacro:
     command:
       - position
+      - velocity
+      - effort
     state:
       - position
       - velocity
+      - effort
   modified_urdf:
     xacros:
       - control_xacro
   control_xacro:
     command:
       - position
+      - velocity
+      - effort
     state:
       - position
       - velocity
+      - effort
