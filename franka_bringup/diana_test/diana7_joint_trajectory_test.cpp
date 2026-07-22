@@ -28,7 +28,7 @@ Diana7TrajectoryValidator::Diana7TrajectoryValidator()
   //----------------------------------------
   // Joint Names
   //----------------------------------------
-  joint_names_ = {"joint1", "joint2", "joint3", "joint4", "joint5", "joint6", "joint7"};
+  joint_names_ = {"diana7_joint1", "diana7_joint2", "diana7_joint3", "diana7_joint4", "diana7_joint5", "diana7_joint6", "diana7_joint7"};
 
   //----------------------------------------
   // Subscriber

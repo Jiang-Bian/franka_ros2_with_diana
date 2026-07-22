@@ -146,27 +146,27 @@ def generate_robot_nodes(context):
             )
         )
 
-    nodes.append(
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                PathJoinSubstitution(
-                    [
-                        FindPackageShare("franka_gripper"),
-                        "launch",
-                        "gripper.launch.py",
-                    ]
-                )
-            ),
-            launch_arguments={
-                "namespace": namespace,
-                "robot_ip": LaunchConfiguration("robot_ip").perform(context),
-                "use_fake_hardware": LaunchConfiguration("use_fake_hardware").perform(
-                    context
-                ),
-            }.items(),
-            condition=IfCondition(LaunchConfiguration("load_gripper")),
-        )
-    )
+    # nodes.append(
+    #     IncludeLaunchDescription(
+    #         PythonLaunchDescriptionSource(
+    #             PathJoinSubstitution(
+    #                 [
+    #                     FindPackageShare("franka_gripper"),
+    #                     "launch",
+    #                     "gripper.launch.py",
+    #                 ]
+    #             )
+    #         ),
+    #         launch_arguments={
+    #             "namespace": namespace,
+    #             "robot_ip": LaunchConfiguration("robot_ip").perform(context),
+    #             "use_fake_hardware": LaunchConfiguration("use_fake_hardware").perform(
+    #                 context
+    #             ),
+    #         }.items(),
+    #         condition=IfCondition(LaunchConfiguration("load_gripper")),
+    #     )
+    # )
 
     return nodes
 
@@ -179,12 +179,16 @@ def generate_launch_description():
             default_value="",
         ),
         DeclareLaunchArgument(
-            "namespace",
-            default_value="",
+            "robot_type",
+            default_value="diana7",
         ),
         DeclareLaunchArgument(
             "robot_ip",
             default_value="192.168.10.75",
+        ),
+        DeclareLaunchArgument(
+            "namespace",
+            default_value="",
         ),
         DeclareLaunchArgument(
             "load_gripper",

@@ -45,7 +45,7 @@
             </xacro:if>
 
             <!-- Joint 1 -->
-            <joint name="${prefix}joint1">
+            <joint name="${prefix}diana7_joint1">
 
                 <command_interface name="position" />
                 <command_interface name="velocity" />
@@ -58,7 +58,7 @@
             </joint>
 
             <!-- Joint 2 -->
-            <joint name="${prefix}joint2">
+            <joint name="${prefix}diana7_joint2">
 
                 <command_interface name="position" />
                 <command_interface name="velocity" />
@@ -71,7 +71,7 @@
             </joint>
 
             <!-- Joint 3 -->
-            <joint name="${prefix}joint3">
+            <joint name="${prefix}diana7_joint3">
 
                 <command_interface name="position" />
                 <command_interface name="velocity" />
@@ -84,7 +84,7 @@
             </joint>
 
             <!-- Joint 4 -->
-            <joint name="${prefix}joint4">
+            <joint name="${prefix}diana7_joint4">
 
                 <command_interface name="position" />
                 <command_interface name="velocity" />
@@ -97,7 +97,7 @@
             </joint>
 
             <!-- Joint 5 -->
-            <joint name="${prefix}joint5">
+            <joint name="${prefix}diana7_joint5">
 
                 <command_interface name="position" />
                 <command_interface name="velocity" />
@@ -110,7 +110,7 @@
             </joint>
 
             <!-- Joint 6 -->
-            <joint name="${prefix}joint6">
+            <joint name="${prefix}diana7_joint6">
 
                 <command_interface name="position" />
                 <command_interface name="velocity" />
@@ -123,7 +123,7 @@
             </joint>
 
             <!-- Joint 7 -->
-            <joint name="${prefix}joint7">
+            <joint name="${prefix}diana7_joint7">
 
                 <command_interface name="position" />
                 <command_interface name="velocity" />
@@ -231,7 +231,7 @@
                 <param name="index">1</param>
             </gpio>
 
-            <sensor name="tcp">
+            <sensor name="diana7_tcp">
                 <state_interface name="force.x" />
                 <state_interface name="force.y" />
                 <state_interface name="force.z" />

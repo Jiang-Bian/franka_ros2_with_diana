@@ -97,7 +97,7 @@
       <xacro:unless value="${num == 1}">
         <xacro:property name="parent_link" value="${prefix}link${num-1}" />
       </xacro:unless>
-      <joint name="${prefix}joint${num}" type="revolute">
+      <joint name="${prefix}diana7_joint${num}" type="revolute">
         <xacro:dh_to_origin a="${a}" alpha="${alpha}" d="${d}" theta="${theta}" />
         <parent link="${parent_link}" />
         <child link="${prefix}link${num}" />

@@ -60,13 +60,13 @@
   joint_trajectory_controller:
     ros__parameters:
       joints:
-        - joint1
-        - joint2
-        - joint3
-        - joint4
-        - joint5
-        - joint6
-        - joint7
+        - diana7_joint1
+        - diana7_joint2
+        - diana7_joint3
+        - diana7_joint4
+        - diana7_joint5
+        - diana7_joint6
+        - diana7_joint7
 
       command_interfaces:
         - position
